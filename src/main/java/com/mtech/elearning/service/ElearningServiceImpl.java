@@ -3,6 +3,7 @@ package com.mtech.elearning.service;
 import com.mtech.elearning.dao.ElearningDaoImpl;
 import com.mtech.elearning.entity.Course;
 import com.mtech.elearning.entity.Instructor;
+import com.mtech.elearning.entity.Student;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -124,6 +125,201 @@ public class ElearningServiceImpl implements ElearningService {
             return courseList;
         } finally {
             logger.info("/findCoursesByInstructorId({})", theId);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Find Specific Course By Given ID
+     *
+     * @param theId
+     * @return
+     */
+    @Override
+    public Course findCourseById(int theId) {
+        try {
+            logger.info("findCourseById({})", theId);
+            Course course = dao.findCourseById(theId);
+            return course;
+        } finally {
+            logger.info("/findCourseById({})", theId);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Add New Course Record
+     *
+     * @param theCourse
+     */
+    @Transactional
+    @Override
+    public void save(Course theCourse) {
+        try {
+            logger.info("save({})", theCourse);
+            dao.save(theCourse);
+        } finally {
+            logger.info("/save({})", theCourse);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Update Existing Course
+     *
+     * @param id
+     * @param tempCourse
+     */
+    @Override
+    @Transactional
+    public void update(int id, Course tempCourse) {
+        try {
+            logger.info("update({}, {})", tempCourse);
+            tempCourse.setId(id);
+            dao.update(tempCourse);
+        } finally {
+            logger.info("/update({}, {})", tempCourse);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Remove Selected Course By ID
+     *
+     * @param theId
+     */
+    @Override
+    @Transactional
+    public void deleteCourseById(int theId) {
+        try {
+            logger.info("deleteCourseById({})", theId);
+            Course course = dao.findCourseById(theId);
+            // handle course not found exception
+
+            dao.deleteCourse(course);
+        } finally {
+            logger.info("/deleteCourseById({})", theId);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Find Courses And Reviews By Given Course ID
+     *
+     * @param theId
+     * @return
+     */
+    @Override
+    public Course findCourseAndReviewsByCourseId(int theId) {
+        try {
+            logger.info("findCourseAndReviewsByCourseId({})", theId);
+            Course course = dao.findCourseAndReviewsByCourseId(theId);
+            return course;
+        } finally {
+            logger.info("/findCourseAndReviewsByCourseId({})", theId);
+        }
+    }
+
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Find Student Record Based On ID
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Student findStudentById(int id) {
+        try {
+            logger.info("findStudentById({})", id);
+            Student student = dao.findStudentById(id);
+            return student;
+        } finally {
+            logger.info("/findStudentById({})", id);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Add New Student Record
+     *
+     * @param student
+     */
+    @Override
+    @Transactional
+    public void save(Student student) {
+        try {
+            logger.info("save({})", student);
+            dao.save(student);
+        } finally {
+            logger.info("/save({})", student);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Update student data
+     *
+     * @param id
+     * @param student
+     */
+    @Override
+    public void update(int id, Student student) {
+        try {
+            logger.info("update({},{})", id, student);
+            student.setId(id);
+            dao.update(student);
+        } finally {
+            logger.info("/update({}, {})", id, student);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Delete Student By Given ID
+     *
+     * @param id
+     */
+    @Override
+    @Transactional
+    public void deleteStudentById(int id) {
+        try {
+            logger.info("deleteStudentById({})", id);
+            Student student = dao.findStudentById(id);
+            if (student == null) {
+                //handle student not found exception here ..
+            }
+            dao.deleteStudent(student);
+        } finally {
+            logger.info("/deleteStudentById({})", id);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Find Student And Courses By Student ID
+     *
+     * @param theId
+     * @return
+     */
+    @Override
+    public Student findStudentAndCoursesByStudentId(int theId) {
+        try {
+            logger.info("findStudentAndCoursesByStudentId({})", theId);
+            Student student = dao.findStudentAndCoursesByStudentId(theId);
+            return student;
+        } finally {
+            logger.info("/findStudentAndCoursesByStudentId({})", theId);
         }
     }
 

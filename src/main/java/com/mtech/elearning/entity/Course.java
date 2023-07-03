@@ -83,6 +83,14 @@ public class Course {
         students.add(student);
     }
 
+    public void addReview(Review review) {
+        if (reviews == null) {
+            reviews = new ArrayList<Review>();
+        }
+        review.setCourse(this);
+        reviews.add(review);
+    }
+
     @Override
     public String toString() {
         return "Course{" +

@@ -1,9 +1,7 @@
 package com.mtech.elearning;
 
 import com.mtech.elearning.dao.ElearningDao;
-import com.mtech.elearning.entity.Course;
-import com.mtech.elearning.entity.Instructor;
-import com.mtech.elearning.entity.InstructorDetail;
+import com.mtech.elearning.entity.*;
 import com.mtech.elearning.service.ElearningService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,18 +26,29 @@ public class ElearningDataApplication {
 
     private void createInstructor(ElearningService elearningDao) {
         Instructor instructor = new Instructor("Mahmoud", "AlZu'bi", "m7moudzo3bi@gmail.com");
-//
-        InstructorDetail instructorDetail = new InstructorDetail("mahmoud-alzubi", "coding");
-//
-        instructor.setInstructorDetail(instructorDetail);
-//
-        Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
-        Course tempCourse2 = new Course("The Pinball Masterclass");
 
-        instructor.addCource(tempCourse1);
-        instructor.addCource(tempCourse2);
+        InstructorDetail instructorDetail = new InstructorDetail("mahmoud-alzubi", "coding");
+
+        instructor.setInstructorDetail(instructorDetail);
+
+        Student student = new Student("MAhmoud", "Yousef", "m7moudzo3bi@gmail.com");
+
+        Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
+        tempCourse1.setInstructor(instructor);
+        Review review1 = new Review("Good");
+        tempCourse1.addReview(review1);
+
+        Course tempCourse2 = new Course("The Pinball Masterclass");
+        tempCourse2.setInstructor(instructor);
+
+        Review review2 = new Review("Very Good");
+        tempCourse2.addReview(review2);
+
+
+        student.addCourse(tempCourse1);
+        student.addCourse(tempCourse2);
 //
-//        elearningDao.save(instructor);
+//        elearningDao.save(student);
 
 //        Instructor instructorById = elearningDao.findInstructorByIdJoinFetch(1);
 //        System.out.println(instructorById);
@@ -64,6 +73,11 @@ public class ElearningDataApplication {
 //        List<Course> coursesByInstructorId = elearningDao.findCoursesByInstructorId(1);
 //        System.out.println(coursesByInstructorId);
 
+//        Course course = elearningDao.findCourseById(10);
+//        System.out.println(course);
+
+        Student student2 = elearningDao.findStudentAndCoursesByStudentId(1);
+        System.out.println(student);
 
     }
 }
