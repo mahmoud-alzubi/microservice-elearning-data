@@ -1,9 +1,7 @@
 package com.mtech.elearning.service;
 
 import com.mtech.elearning.dao.ElearningDaoImpl;
-import com.mtech.elearning.entity.Course;
-import com.mtech.elearning.entity.Instructor;
-import com.mtech.elearning.entity.Student;
+import com.mtech.elearning.entity.*;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +27,122 @@ public class ElearningServiceImpl implements ElearningService {
     public ElearningServiceImpl(ElearningDaoImpl dao) {
         this.dao = dao;
     }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Retrieve All Instructor Details
+     *
+     * @return
+     */
+    @Override
+    public List<InstructorDetail> findAllInstructorDetails() {
+        try {
+            logger.info("findAllInstructorDetails()");
+            List<InstructorDetail> instructorDetailList = dao.findAllInstructorDetails();
+            return instructorDetailList;
+        } finally {
+            logger.info("/findAllInstructorDetails()");
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Find Instructor Details By ID
+     *
+     * @param theId
+     * @return
+     */
+    @Override
+    public InstructorDetail findInstructorDetailById(int theId) {
+        try {
+            logger.info("findInstructorDetailById({})", theId);
+            InstructorDetail instructorDetail = dao.findInstructorDetailById(theId);
+            return instructorDetail;
+        } finally {
+            logger.info("/findInstructorDetailById({})", theId);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Add new Instructor Details Record
+     *
+     * @param instructorDetail
+     */
+    @Override
+    @Transactional
+    public void save(InstructorDetail instructorDetail) {
+        try {
+            logger.info("save({})", instructorDetail);
+            dao.save(instructorDetail);
+        } finally {
+            logger.info("/save({})", instructorDetail);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Update Instructor Details
+     *
+     * @param id
+     * @param instructorDetail
+     */
+    @Override
+    @Transactional
+    public void update(int id, InstructorDetail instructorDetail) {
+        try {
+            logger.info("update({}, {})", id, instructorDetail);
+            instructorDetail.setId(id);
+            dao.update(instructorDetail);
+        } finally {
+            logger.info("/update({}, {})", id, instructorDetail);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Delete Instructor Details
+     *
+     * @param id
+     */
+    @Override
+    @Transactional
+    public void deleteInstructorDetail(int id) {
+        try {
+            logger.info("deleteInstructorDetail({})", id);
+            InstructorDetail instructorDetail = dao.findInstructorDetailById(id);
+            if (instructorDetail == null) {
+                // handle instructor detail record not found exception ..
+            }
+            dao.deleteInstructorDetail(instructorDetail);
+        } finally {
+            logger.info("/deleteInstructorDetail({})", id);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Retrieve All Instructors
+     *
+     * @return
+     */
+    @Override
+    public List<Instructor> findAllInstructors() {
+        try {
+            logger.info("findAllInstructors()");
+            List<Instructor> instructorList = dao.findAllInstructors();
+            return instructorList;
+        } finally {
+            logger.info("/findAllInstructors()");
+        }
+    }
+
 
     //////////////////////////////////////////////////
 
@@ -125,6 +239,24 @@ public class ElearningServiceImpl implements ElearningService {
             return courseList;
         } finally {
             logger.info("/findCoursesByInstructorId({})", theId);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Find All Courses
+     *
+     * @return
+     */
+    @Override
+    public List<Course> findAllCourses() {
+        try {
+            logger.info("findAllCourses()");
+            List<Course> courseList = dao.findAllCourses();
+            return courseList;
+        } finally {
+            logger.info("/findAllCourses()");
         }
     }
 
@@ -301,6 +433,84 @@ public class ElearningServiceImpl implements ElearningService {
             dao.deleteStudent(student);
         } finally {
             logger.info("/deleteStudentById({})", id);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Find Review By ID
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Review findReviewById(int id) {
+        try {
+            logger.info("findReviewById({})", id);
+            Review review = dao.findReviewById(id);
+            return review;
+        } finally {
+            logger.info("/findReviewById({})", id);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Add New Review Record
+     *
+     * @param review
+     */
+    @Override
+    @Transactional
+    public void save(Review review) {
+        try {
+            logger.info("save({})", review);
+            dao.save(review);
+        } finally {
+            logger.info("/save({})", review);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Update Review Revord
+     *
+     * @param id
+     * @param review
+     */
+    @Override
+    @Transactional
+    public void update(int id, Review review) {
+        try {
+            logger.info("update({}, {})", id, review);
+            review.setId(id);
+            dao.update(review);
+        } finally {
+            logger.info("/update({}, {})", id, review);
+        }
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Delete Review Record
+     *
+     * @param id
+     */
+    @Override
+    public void deleteReview(int id) {
+        try {
+            logger.info("deleteReview({})", id);
+            Review review = dao.findReviewById(id);
+            if (review == null) {
+                // throw review not found exception..
+            }
+            dao.deleteReview(review);
+        } finally {
+            logger.info("/deleteReview({})", id);
         }
     }
 

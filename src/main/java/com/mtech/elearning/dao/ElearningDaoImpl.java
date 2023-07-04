@@ -1,9 +1,6 @@
 package com.mtech.elearning.dao;
 
-import com.mtech.elearning.entity.Course;
-import com.mtech.elearning.entity.Instructor;
-import com.mtech.elearning.entity.InstructorDetail;
-import com.mtech.elearning.entity.Student;
+import com.mtech.elearning.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -23,7 +20,12 @@ public class ElearningDaoImpl implements ElearningDao {
         this.entityManager = entityManager;
     }
 
-    /////////////////////INSTRUCTOR//////////////////////////////
+
+    @Override
+    public List<Instructor> findAllInstructors() {
+        TypedQuery<Instructor> query = entityManager.createQuery("FROM Instructor", Instructor.class);
+        return query.getResultList();
+    }
 
     /**
      * @param id
@@ -74,18 +76,12 @@ public class ElearningDaoImpl implements ElearningDao {
         entityManager.merge(tempInstructor);
     }
 
-    /**
-     * @param id
-     */
     @Override
-    @Transactional
-    public void remove(int id) {
-        Instructor instructor = findInstructorById(id);
-        entityManager.remove(instructor);
+    public List<Course> findAllCourses() {
+        TypedQuery<Course> query = entityManager.createQuery("FROM Course", Course.class);
+        return query.getResultList();
     }
 
-
-    ///////////////////COURSE//////////////////////////
     @Override
     public List<Course> findCoursesByInstructorId(int theId) {
         Query query = entityManager.createQuery("FROM Course WHERE instructor.id = :data");
@@ -134,7 +130,12 @@ public class ElearningDaoImpl implements ElearningDao {
         entityManager.remove(course);
     }
 
-    //////////////////////INSTRUCTOR DETAILS//////////////
+    @Override
+    public List<InstructorDetail> findAllInstructorDetails() {
+        TypedQuery<InstructorDetail> instructorDetailTypedQuery = entityManager.createQuery("FROM InstructorDetail", InstructorDetail.class);
+        return instructorDetailTypedQuery.getResultList();
+    }
+
     @Override
     public InstructorDetail findInstructorDetailById(int theId) {
         InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, theId);
@@ -148,7 +149,6 @@ public class ElearningDaoImpl implements ElearningDao {
         entityManager.remove(instructorDetail);
     }
 
-    ////////////////OTHERS////////////////////////
 
     @Override
     public Course findCourseAndReviewsByCourseId(int theId) {
@@ -182,6 +182,29 @@ public class ElearningDaoImpl implements ElearningDao {
     @Override
     public void deleteStudent(Student student) {
         entityManager.remove(student);
+    }
+
+
+    ////////////////////// REVIEWS /////////////
+    @Override
+    public Review findReviewById(int id) {
+        Review review = entityManager.find(Review.class, id);
+        return review;
+    }
+
+    @Override
+    public void save(Review review) {
+        entityManager.persist(review);
+    }
+
+    @Override
+    public void update(Review review) {
+        entityManager.merge(review);
+    }
+
+    @Override
+    public void deleteReview(Review review) {
+        entityManager.remove(review);
     }
 
 
