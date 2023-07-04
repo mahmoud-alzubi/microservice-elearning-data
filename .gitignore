@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+/.mvn/wrapper/maven-wrapper.jar
+/mvnw
+/mvnw.cmd
+/.mvn/wrapper/maven-wrapper.properties
+/src/main/java/com/mtech/elearning/exceptions/CourseNotFoundException.java
