@@ -2,8 +2,11 @@ package com.mtech.elearning.service;
 
 import com.mtech.elearning.entity.Student;
 
+import java.util.List;
+
 public interface StudentService {
 
+    List<Student> findAll();
 
     Student findStudentById(int id);
 

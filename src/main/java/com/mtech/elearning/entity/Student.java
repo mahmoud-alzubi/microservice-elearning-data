@@ -1,5 +1,6 @@
 package com.mtech.elearning.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Student {
     @JoinTable(name = "course_student",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
+    @JsonIgnoreProperties("students")
     private List<Course> courses;
 
     public Student() {

@@ -2,8 +2,11 @@ package com.mtech.elearning.repository;
 
 import com.mtech.elearning.entity.Review;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class ReviewRepositoryImpl implements ReviewRepository {
@@ -12,6 +15,12 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     @Autowired
     public ReviewRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    @Override
+    public List<Review> findAll() {
+        Query query = entityManager.createQuery("FROM Review");
+        return query.getResultList();
     }
 
     @Override

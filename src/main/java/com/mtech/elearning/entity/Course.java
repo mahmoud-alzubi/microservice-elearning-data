@@ -1,5 +1,6 @@
 package com.mtech.elearning.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,11 +16,13 @@ public class Course {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "instructor_id")
+    @JsonIgnoreProperties("courses")
     private Instructor instructor;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "course", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnoreProperties("course")
     private List<Review> reviews;
 
 
@@ -27,6 +30,7 @@ public class Course {
     @JoinTable(name = "course_student",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id"))
+    @JsonIgnoreProperties("courses")
     private List<Student> students;
 
     public Course() {

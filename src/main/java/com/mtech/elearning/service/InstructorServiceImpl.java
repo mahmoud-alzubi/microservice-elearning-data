@@ -2,6 +2,7 @@ package com.mtech.elearning.service;
 
 import com.mtech.elearning.entity.Course;
 import com.mtech.elearning.entity.Instructor;
+import com.mtech.elearning.exceptions.InstructorDetailNotFoundException;
 import com.mtech.elearning.repository.CourseRepositoryImpl;
 import com.mtech.elearning.repository.InstructorRepositoryImpl;
 import jakarta.transaction.Transactional;

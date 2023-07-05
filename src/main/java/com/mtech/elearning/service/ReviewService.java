@@ -2,8 +2,10 @@ package com.mtech.elearning.service;
 
 import com.mtech.elearning.entity.Review;
 
-public interface ReviewService {
+import java.util.List;
 
+public interface ReviewService {
+    List<Review> findAll();
     Review findReviewById(int id);
 
     void save(Review review);

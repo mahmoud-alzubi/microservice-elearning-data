@@ -1,6 +1,7 @@
 package com.mtech.elearning.service;
 
 import com.mtech.elearning.entity.Course;
+import com.mtech.elearning.exceptions.CourseNotFoundException;
 import com.mtech.elearning.repository.CourseRepositoryImpl;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -59,6 +60,9 @@ public class CourseServiceImpl implements CourseService {
         try {
             logger.info("findCourseById({})", theId);
             Course course = repository.findCourseById(theId);
+            if (course == null) {
+                throw new CourseNotFoundException("Course not found with id: " + theId);
+            }
             return course;
         } finally {
             logger.info("/findCourseById({})", theId);

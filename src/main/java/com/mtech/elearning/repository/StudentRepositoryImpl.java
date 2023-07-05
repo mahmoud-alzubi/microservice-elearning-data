@@ -2,9 +2,12 @@ package com.mtech.elearning.repository;
 
 import com.mtech.elearning.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class StudentRepositoryImpl implements StudentRepository {
@@ -35,6 +38,12 @@ public class StudentRepositoryImpl implements StudentRepository {
                 """, Student.class);
         query.setParameter("data", theId);
         return query.getSingleResult();
+    }
+
+    @Override
+    public List<Student> findAll() {
+        Query query = entityManager.createQuery("SELECT s FROM Student s");
+        return query.getResultList();
     }
 
     @Override

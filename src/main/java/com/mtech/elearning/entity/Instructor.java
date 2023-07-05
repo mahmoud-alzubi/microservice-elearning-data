@@ -1,5 +1,7 @@
 package com.mtech.elearning.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnoreProperties("instructor")
     private List<Course> courses;
 
     public Instructor() {
@@ -91,8 +94,6 @@ public class Instructor {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", instructorDetail=" + instructorDetail +
-                ", courses=" + courses +
                 '}';
     }
 

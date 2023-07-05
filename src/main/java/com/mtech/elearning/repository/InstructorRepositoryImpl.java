@@ -1,7 +1,9 @@
 package com.mtech.elearning.repository;
 
 import com.mtech.elearning.entity.Instructor;
+import com.mtech.elearning.exceptions.InstructorDetailNotFoundException;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,15 +35,19 @@ public class InstructorRepositoryImpl implements InstructorRepository {
     @Override
     public Instructor findInstructorByIdJoinFetch(int theId) {
         //JPQL query
-        TypedQuery<Instructor> query = entityManager.createQuery(""" 
-                SELECT i from Instructor i 
-                JOIN FETCH i.courses
-                JOIN FETCH i.instructorDetail 
-                WHERE i.id = :data
-                """, Instructor.class);
+        try {
+            TypedQuery<Instructor> query = entityManager.createQuery(""" 
+                    SELECT i from Instructor i 
+                    JOIN FETCH i.courses
+                    JOIN FETCH i.instructorDetail 
+                    WHERE i.id = :data
+                    """, Instructor.class);
 
-        TypedQuery<Instructor> data = query.setParameter("data", theId);
-        return data.getSingleResult();
+            TypedQuery<Instructor> data = query.setParameter("data", theId);
+            return data.getSingleResult();
+        } catch (NoResultException e) {
+            throw new InstructorDetailNotFoundException("Instructor  not found with id: " + theId);
+        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.mtech.elearning.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +15,9 @@ public class Review {
     @Column(name = "comment")
     private String comment;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("reviews")
     @JoinColumn(name = "course_id")
     private Course course;
 

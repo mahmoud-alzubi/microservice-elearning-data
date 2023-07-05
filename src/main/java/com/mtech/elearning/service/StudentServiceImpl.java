@@ -1,12 +1,16 @@
 package com.mtech.elearning.service;
 
 import com.mtech.elearning.entity.Student;
+import com.mtech.elearning.exceptions.StudentNotFoundException;
+import com.mtech.elearning.repository.StudentRepository;
 import com.mtech.elearning.repository.StudentRepositoryImpl;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -28,6 +32,25 @@ public class StudentServiceImpl implements StudentService {
     //////////////////////////////////////////////////
 
     /**
+     * To Retrieve All Students Records
+     *
+     * @return
+     */
+    @Override
+    public List<Student> findAll() {
+        try {
+            logger.info("/findAll()");
+            List<Student> studentList = repository.findAll();
+            return studentList;
+        } finally {
+            logger.info("/findAll()");
+        }
+    }
+
+
+    //////////////////////////////////////////////////
+
+    /**
      * To Find Student Record Based On ID
      *
      * @param id
@@ -38,6 +61,9 @@ public class StudentServiceImpl implements StudentService {
         try {
             logger.info("findStudentById({})", id);
             Student student = repository.findStudentById(id);
+            if (student == null) {
+                throw new StudentNotFoundException("Student not found with id: " + id);
+            }
             return student;
         } finally {
             logger.info("/findStudentById({})", id);

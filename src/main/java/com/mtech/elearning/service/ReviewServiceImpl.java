@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -25,6 +27,24 @@ public class ReviewServiceImpl implements ReviewService {
     @Autowired
     public ReviewServiceImpl(ReviewRepositoryImpl repository) {
         this.repository = repository;
+    }
+
+    //////////////////////////////////////////////////
+
+    /**
+     * To Retrieve All Review Records
+     *
+     * @return
+     */
+    @Override
+    public List<Review> findAll() {
+        try {
+            logger.info("findAll()");
+            List<Review> reviewList = repository.findAll();
+            return reviewList;
+        } finally {
+            logger.info("/findAll()");
+        }
     }
 
     //////////////////////////////////////////////////
