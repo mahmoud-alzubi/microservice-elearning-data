@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class InstructorRepositoryDetailImpl implements InstructorDetailRepository {
+public class InstructorDetailRepositoryImpl implements InstructorDetailRepository {
     private final EntityManager entityManager;
 
     @Autowired
-    public InstructorRepositoryDetailImpl(EntityManager entityManager) {
+    public InstructorDetailRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
