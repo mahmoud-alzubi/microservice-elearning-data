@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "3f1d0a1b-b2dd-4e7e-93cd-6a1221b40ac3",
+		"name": "E-Learning",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "findAllInstructorDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/instructor-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructor-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllIcourses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/courses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findCourseByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/courses/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"courses",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeCourse",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/courses/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"courses",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllInstructors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/instructors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findInstructorByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/instructors/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructors",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findInstructorDetailsByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/instructor-details/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructor-details",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addInstructorDetails",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"youtubeChannel\": \"mohammad-alzubi\",\r\n    \"hobby\": \"coding\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/instructor-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructor-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateInstructorDetails",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"youtubeChannel\": \"ahmad-alzubi\",\r\n    \"hobby\": \"swimming\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/instructor-details/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructor-details",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeInstructorDetails",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"youtubeChannel\": \"ahmad-alzubi\",\r\n    \"hobby\": \"swimming\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/instructor-details/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructor-details",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addInstructor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Mohammd\",\r\n    \"lastName\": \"AlZu'bi\",\r\n    \"email\": \"m7mad@gmail.com\",\r\n    \"instructorDetail\": {\r\n        \"youtubeChannel\": \"mohammad-alzubi\",\r\n        \"hobby\": \"swimming\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/instructors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateInstructor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Mohammd\",\r\n    \"lastName\": \"AlZu'bi\",\r\n    \"email\": \"m7mad@gmail.com\",\r\n    \"instructorDetail\": {\r\n        \"youtubeChannel\": \"mohammad-alzubi\",\r\n        \"hobby\": \"guitar playing\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/instructors/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructors",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeInstructor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/instructors/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"instructors",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCourse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Introduction to Spring\",\r\n    \"instructor\": {\r\n        \"id\": 1,\r\n        \"firstName\": \"Mahmoud\",\r\n        \"lastName\": \"AlZu'bi\",\r\n        \"email\": \"m7moudzo3bi@gmail.com\",\r\n        \"instructorDetail\": {\r\n            \"id\": 1,\r\n            \"youtubeChannel\": \"mahmoud-alzubi\",\r\n            \"hobby\": \"coding\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/courses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCourse",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Introduction to Spring\",\r\n    \"instructor\": {\r\n        \"id\": 1,\r\n        \"firstName\": \"Mahmoud\",\r\n        \"lastName\": \"AlZu'bi\",\r\n        \"email\": \"m7moudzo3bi@gmail.com\",\r\n        \"instructorDetail\": {\r\n            \"id\": 1,\r\n            \"youtubeChannel\": \"mahmoud-alzubi\",\r\n            \"hobby\": \"coding\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/courses/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"courses",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
